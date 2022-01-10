@@ -1,0 +1,22 @@
+<div class="row row-cols-1 row-cols-md-3 g-4 m-5 animated fadeIn">
+  <div
+  (click)="showArtist(song)"
+  class="col puntero"
+  *ngFor="let song of songs"
+  >
+    <div class="card h-100">
+      <img [src]="song.images | noimage" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{ song.name }}</h5>
+        <p class="card-text">
+          <span *ngFor="let artist of song.artists" class="badge bg-primary">
+            {{ artist.name }}
+          </span>
+        </p>
+        <div class="card-footer">
+          <small class="text-muted"> {{ song.release_date }} </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

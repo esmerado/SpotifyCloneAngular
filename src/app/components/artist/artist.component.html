@@ -1,0 +1,65 @@
+<app-loading class="animated fadeIn" *ngIf="loading"></app-loading>
+
+<div
+  *ngIf="!loading"
+  class="row d-flex justify-content-center align-items-center"
+>
+  <div class="col-2">
+    <img [src]="artist.images | noimage" class="img-thumbnail img-circle" />
+  </div>
+  <div class="col">
+    <h3>{{ artist.name }}</h3>
+    <p>
+      <a [href]="artist.external_urls.spotify" target="_blank">
+        Go to artist page
+      </a>
+    </p>
+  </div>
+  <div class="col-4 text-right">
+    <button routerLink="/search" class="btn btn-outline-danger">Go Back</button>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col">
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th>Photo</th>
+          <th>Album</th>
+          <th>Song</th>
+          <th>Preview</th>
+        </tr>
+      </thead>
+      <tbody class="table-dark">
+        <tr *ngFor="let track of topTracks">
+          <td class="">
+            <img
+              [src]="track.album.images | noimage"
+              alt=""
+              class="img-thumb img-circle2"
+            />
+          </td>
+          <td>
+            {{ track.album.name }}
+          </td>
+          <td>
+            {{ track.name }}
+          </td>
+          <td>
+            <!-- <audio [src]="track.preview_url" controls></audio> -->
+            <iframe
+              [src]="track.uri | domseguro"
+              width="300"
+              height="80"
+              scrolling="no"
+              frameborder="0"
+              style="border: none; overflow: hidden"
+              allowtransparency="true"
+            ></iframe>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
